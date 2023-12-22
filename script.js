@@ -55,12 +55,14 @@ document.addEventListener('DOMContentLoaded', function () {
         generateAnotherButton.innerText = 'Generate Another Tune';
         generateAnotherButton.addEventListener('click', function () {
             // Reset the music player and initiate the process again
-            //generateButton.style.display = 'block';
+            const midiPlayer = musicPlayerContainer.querySelector('midi-player');
+            if (midiPlayer) {
+                midiPlayer.stop(); // Stop the currently playing music
+                musicPlayerContainer.removeChild(midiPlayer);
+            }
+
             generateAnotherButton.style.display = 'none';
             promptMessage.style.display = 'none';
-
-            // Clear previous content in the musicPlayerContainer
-            musicPlayerContainer.innerHTML = '';
         });
 
         const promptMessage = document.createElement('div');
